@@ -1,0 +1,49 @@
+<DOCTYPE html>
+	<html>
+	<head>
+		<script src="Crotchet.js"></script>
+	</head>
+	<body>
+		<script>
+			/* OSCILLATOR AND GAIN NODE */
+
+			//CREATE OSCILATTOR NODE WITH FREQUENCY 1000 AND WAVEFORM TYPE SQUARE
+			var oscillator = CROTCHET.createOscillator(1000,"square");
+
+			//CREATE GAIN NODE WITH gain 0.5
+			var gain = CROTCHET.createGain(50);
+			
+			//CONNECT OSCILLATOR TO GAIN
+			oscillator.connectNode(gain);
+
+			//PLAY OSCILLATOR SOUND WITH FREQ 1000Hz
+			oscillator.start();
+
+			//CHANGE FREQ AT 2s
+			setTimeout(function(){
+				oscillator.setFrequency(440);
+			},2000);
+
+			//GENERATE A DETUNE A SEMITONE AT 3.3s
+			setTimeout(function(){
+				oscillator.detune(Math.pow(2, 1/12) * 10);
+			},3300);
+			
+			//CHANGE WAVEFORM TYPE TO SAWTOOTH (YOU CAN USE SINE, SAWTOOTH, SQUARE, TRIANGLE AND CUSTOM)
+			setTimeout(function(){
+				oscillator.setType("SAWTOOTH");
+			},4000);
+			
+			//SET GAIN AT 1 AT 5s
+			setTimeout(function(){
+				gain.setGain(100);
+			},5000);
+
+			//STOP SOUND AT 6s
+			setTimeout(function(){
+				oscillator.stop();
+			},6000);
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<DOCTYPE html>
+	<html>
+	<head>
+		<script src="Crotchet.js"></script>
+	</head>
+	<body>
+		<script>
+			/* FILE LOAD WITH FILTER AND GAIN */
+
+			//CREATE A FILTER WITH ATTRIBUTES TYPE, FREQUENCY, GAIN and Q
+			var filter = CROTCHET.createFilter("BANDPASS",6000,-40,1000);
+
+			//REGISTER A GAIN NODE WITH 0.2 GAIN LEVEL
+			var gain = CROTCHET.createGain(20);
+
+			//CONNECT FILTER TO GAIN
+			filter.connectNode(gain);
+
+			//LOAD MP3 FILES WITH ATTRIBUTES URLs Array, Keyname Array, Node to connect (or null) 
+			CROTCHET.loadSounds(["file1.mp3","file2.mp3"],["one, two"],filter);
+			
+			//PLAYS "file1.mp3" and apply filters
+			CROTCHET.play("one"); 
+
+			//STOPS SOUND 30s AFTER SCRIPT WAS LOADED
+			setTimeout(function(){
+				CROTCHET.stop("one");
+			},30000);
+			
+		</script>
+	</body>
+</html>

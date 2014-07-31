@@ -1,0 +1,27 @@
+<DOCTYPE html>
+	<html>
+	<head>
+		<script src="Crotchet.js"></script>
+	</head>
+	<body>
+		<script>
+			/* MICROPHONE, ANALYSER AND UPDATE (using RequestAnimFrame) */
+
+			//CREATE ANALYSER NODE
+			var analyser = CROTCHET.createAnalyser(512);
+
+			//INIT MICROPHONE AND SET ITS OUTPUT IN ANALYSER NODE
+			CROTCHET.startMicrophone(analyser);
+
+			//OUTPUT ANALYSER DATA TO BROWSER CONSOLE
+			CROTCHET.setUpdate(function() {
+				console.log("Waveform: "+JSON.stringify(analyser.getFloatWaveform()));
+				console.log("Spectrum: "+JSON.stringify(analyser.getFloatSpectrum()));
+			});
+
+			//RUN UPDATE IN LOOP
+			CROTCHET.frame();
+
+		</script>
+	</body>
+</html>
