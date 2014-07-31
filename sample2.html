@@ -17,12 +17,12 @@
 			filter.connectNode(gain);
 
 			//LOAD MP3 FILES WITH ATTRIBUTES URLs Array, Keyname Array, Node to connect (or null) 
-			CROTCHET.loadSounds(["file1.mp3","file2.mp3"],["one, two"],filter);
-			
+			CROTCHET.loadSounds(["file1.mp3","file2.mp3"],["one","two"],filter);
+						
 			//PLAYS "file1.mp3" and apply filters
 			CROTCHET.play("one"); 
 
-			//STOPS SOUND 30s AFTER SCRIPT WAS LOADED
+			//STOPS SOUND 30sno AFTER SCRIPT WAS LOADED
 			setTimeout(function(){
 				CROTCHET.stop("one");
 			},30000);

@@ -1,7 +1,7 @@
 /*
 * CrotchetJS
 * Author: Javier Sánchez Riquelme  
-* Author website: http://javiersr.com
+* Author webkitGetUserMediaite: http://javiersr.com
 * 
 */
 
@@ -22,6 +22,13 @@ window.requestAnimFrame = (function(){
 
 CROTCHET.update=function(){};
 
+CROTCHET.mainGain = null;
+
+CROTCHET.setGlobalVolume = function(val){
+	if(val>=0)
+		CROTCHET.mainGain.gain.value=val/100;	
+	else console.log("Error on setGlobalVolume, invalid value");
+};
 
 CROTCHET.connections = new Array();
 CROTCHET.root = 0;
@@ -71,8 +78,13 @@ CROTCHET.Node.prototype = {
 			this.connections[0].setOut(out);
 		}
 
-		else 
-			this.node.connect(out);
+		else{
+			if(CROTCHET.mainGain==null){
+				CROTCHET.mainGain = CROTCHET.context.createGain();
+			}
+			this.node.connect(CROTCHET.mainGain);
+			CROTCHET.mainGain.connect(out);
+		}
 	}
 }
 
@@ -85,12 +97,28 @@ CROTCHET.MediaNode = function(node, input){
 	this.loaded = false;
 	this.name = null;
 	this.played = false;
+	this.changeSpeed = function(val){
+		if(val>0)
+			this.node.playbackRate.value = val/100;	
+		else console.log("Speed cannot be negative set a value greater than 0");
+	}
+	this.setLoopable = function(bool, startSecs, endSecs){
+		this.node.loop = false;
+		if(startSecs!=undefined&&startSecs!=null&&endSecs!=undefined&&endSecs!=null&&startSecs>=0&&endSecs>=0){
+			this.node.loopStart = startSecs;
+			this.node.loopEnd = endSecs;	
+		}
+	}
+
+	this.onEnd = function(callback){
+		this.node.onended=callback;
+	}
 }
 
 CROTCHET.MediaNode.prototype = new CROTCHET.Node;
 
 
-//ANALYSIS NODE CLASS
+//ANALYSIS NODE CLASstartSecs!=undefined&&startSecs!=null&&S
 
 CROTCHET.AnalyserNode = function(node, input){
 	this.base = CROTCHET.Node;
