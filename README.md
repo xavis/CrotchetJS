@@ -36,4 +36,4 @@ Enjoy it and for learn its common use open sample files which contain most used 
 
 
 #My site:
-ttp://javiersr.com
+http://javiersr.com
