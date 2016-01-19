@@ -1,0 +1,19 @@
+{
+  "name": "CrotchetJS",
+  "homepage": "https://github.com/xavis/CrotchetJS",
+  "authors": [
+    "Javier Sánchez <javiershoz@gmail.com>"
+  ],
+  "description": "A Web Audio API library for making audio webs easier to build",
+  "main": "Crotchet.js",
+  "moduleType": [],
+  "keywords": [
+    "audio",
+    "api",
+    "web",
+    "crotchet",
+    "music",
+    "microphone"
+  ],
+  "license": "MIT"
+}

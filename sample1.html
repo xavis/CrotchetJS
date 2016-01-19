@@ -1,14 +1,14 @@
 <DOCTYPE html>
 	<html>
 	<head>
-		<script src="Crotchet.js"></script>
+		<script src="crotchet.js"></script>
 	</head>
 	<body>
 		<script>
 			/* MICROPHONE, ANALYSER AND UPDATE (using RequestAnimFrame) */
 
 			//CREATE ANALYSER NODE
-			var analyser = CROTCHET.createAnalyser(512);
+			var analyser = CROTCHET.createAnalyser();
 
 			//INIT MICROPHONE AND SET ITS OUTPUT IN ANALYSER NODE
 			CROTCHET.startMicrophone(analyser);
@@ -17,6 +17,7 @@
 			CROTCHET.setUpdate(function() {
 				console.log("Waveform: "+JSON.stringify(analyser.getFloatWaveform()));
 				console.log("Spectrum: "+JSON.stringify(analyser.getFloatSpectrum()));
+				console.log("Note: " + JSON.stringify(analyser.getPitch()));
 			});
 
 			//RUN UPDATE IN LOOP
