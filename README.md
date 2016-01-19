@@ -8,7 +8,7 @@ CrotchetJS it's just a script which you must link to your web project to get its
 Version
 ----
 
-1.0
+1.1
 
 Use
 --------------
